@@ -1,0 +1,4 @@
+name = Demo
+description = Just a Demo module.
+core = 7.x
+

@@ -1,0 +1,36 @@
+<?php
+
+/*
+ * Implements hook_menu().
+ */
+
+function menu_magic_menu() {
+  $items = array();
+  $items['magic'] = array( //creates new menu item
+    'title' => 'A little magic',
+    'page callback' => 'menu_magic_basic', //function callback - to php function
+    //'access callback' => 'user_access', //function defined by Drupal core - determines if user has access to this page
+    //above calls user_access('access content') as defined below - returns a boolean.  If you don't specify, Drupal does
+    //this by default
+    'access arguments' => array('access content'), // list of access arguments
+
+  );
+
+  return $items;
+}
+
+/*
+ * Create menu function called above
+ */
+function menu_magic_basic(){
+//This is a very simple page element.  It will appear on the page,
+//but other modules can't customise it and themes can't overide
+
+  $content['raw_markup'] = array(
+    '#type' => 'markup',
+    '#markup' => '<p> Truly, this is magical! </p>',
+  );
+
+  return $content;
+}
+
