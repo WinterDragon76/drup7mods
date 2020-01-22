@@ -16,6 +16,31 @@ function menu_magic_menu() {
 
   );
 
+  $items['magic/%'] = array( //creates new menu item
+    'title' => 'Even more magical',
+    'page callback' => 'menu_magic_extra', //function callback - to php function
+    //'access callback' => 'user_access', //function defined by Drupal core - determines if user has access to this page
+    //above calls user_access('access content') as defined below - returns a boolean.  If you don't specify, Drupal does
+    //this by default
+    'page arguments'  => array(1),
+    'access arguments' => array('access content'), // list of access arguments
+    'file' => 'menu_magic.extra.inc',
+  );
+
+  $items['user/%/magic'] = array( //creates new menu item
+    'title' => 'Magic',
+    'description' => 'Magical magic for users',
+    'page callback' => 'menu_magic_user_tab', //function callback - to php function
+    //'access callback' => 'user_access', //function defined by Drupal core - determines if user has access to this page
+    //above calls user_access('access content') as defined below - returns a boolean.  If you don't specify, Drupal does
+    //this by default
+    'page arguments'  => array(1),
+    'access callback' => 'user_access',
+    'access arguments' => array('administer users'), // list of access arguments
+    'file' => 'menu_magic.user.inc',
+    'type' => MENU_LOCAL_TASK, //determines the type of menu item
+  );
+
   return $items;
 }
 
