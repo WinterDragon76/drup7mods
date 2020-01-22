@@ -4,7 +4,8 @@
  * Implements hook_menu().
  */
 
-function menu_magic_menu() {
+function menu_magic_menu()
+{
   $items = array();
   $items['magic'] = array( //creates new menu item
     'title' => 'A little magic',
@@ -41,15 +42,28 @@ function menu_magic_menu() {
     'type' => MENU_LOCAL_TASK, //determines the type of menu item
   );
 
+  //node_load(%)
+  $items['node/%node/magic'] = array(
+    'title' => 'Magic',
+    'description' => 'Do amazing and magical things',
+    'page callback' => 'menu_magic_node_context',
+    'page arguments' => array(1),
+    'access arguments' => array('access content'),
+    'file' => 'menu_magic.context.inc',
+    'type' => MENU_LOCAL_TASK,
+    'context' => MENU_CONTEXT_PAGE | MENU_CONTEXT_INLINE,
+  );
+
   return $items;
 }
 
 /*
  * Create menu function called above
  */
-function menu_magic_basic(){
-//This is a very simple page element.  It will appear on the page,
-//but other modules can't customise it and themes can't overide
+function menu_magic_basic()
+{
+  //This is a very simple page element.  It will appear on the page,
+  //but other modules can't customise it and themes can't overide
 
   $content['raw_markup'] = array(
     '#type' => 'markup',
@@ -58,4 +72,3 @@ function menu_magic_basic(){
 
   return $content;
 }
-
